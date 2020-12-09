@@ -1,15 +1,8 @@
-// window.addEventListener('DOMContentLoaded', function() {
-//   // Execute after page load
-// })
 
 
 // locating dealer and player divs
 var dealer = document.querySelector('#dealer-hand');
 var player = document.querySelector('#player-hand');
-
-// creating an image element and appending it to dealer/player
-// var img = document.createElement('img');
-// img.setAttribute('src', 'images/jack_of_clubs.png');
 
 
 // locating deal/hit/stand buttons
@@ -18,13 +11,6 @@ var player = document.querySelector('#player-hand');
   var hit = document.querySelector('#hit-button');
   var stand = document.querySelector('#stand-button');
 
-// adding event listeners to buttons
-
-// deal.addEventListener('click', () => {
-//   img.setAttribute('src', 'images/jack_of_spades.png');
-//   dealer.appendChild(img);
-  
-// })
 
 // create the deck
 deckArray = []
@@ -43,7 +29,7 @@ for (var i=2; i < 15; i++){
   let cardArr = new Object();
   cardArr.value = i;
   cardArr.suit = 'diamonds'
-  cardArr.imageURL = `images/${i}_of_diamon.pngds`
+  cardArr.imageURL = `images/${i}_of_diamonds.png`
   deckArray.push(cardArr);
 }
 for (var i=2; i < 15; i++){
@@ -75,11 +61,30 @@ function getCardImage(obj){
 }
 
 
+// shuffle array provided by V
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+  return array;
+}
 
 
-// Deal button event listener: deals 4 cards - pops each card from deckArray and pushes to the dealer or player's hand. Calls to the render function to place images on table  
+
+
+// set inital dealer and player hand arrays 
+
+dealerHand = [];
+playerHand =[]; 
+
+// Deal button event listener: deals 4 cards - pops each card from deckArray and pushes to the dealer or player's hand. Calls to the render function to place images on table 
 
 deal.addEventListener('click', () => {
+  // shuffle the deck
+  shuffleArray(deckArray);
   // dealer and player arrays 
   dealerHand = [];
   playerHand =[];
@@ -104,6 +109,18 @@ deal.addEventListener('click', () => {
 // call to render function (puts card images on table)
 render(dealerHand, playerHand);
 
+
+// orginal code that was later divided up into functions 
+//   // pop() card4 and push to players hand
+  // let card4 = deckArray.pop();
+  // playerHand.push(card4);
+// // create img and append to player at table
+//   let cardImg4 = document.createElement('img');
+//   cardImg4.setAttribute('src', card4.imageURL);
+//   player.appendChild(cardImg4);
+
+})
+
 // render function that displays dealer and player hand on the table 
 
 function render(dealerHand, playerHand){
@@ -122,14 +139,38 @@ function render(dealerHand, playerHand){
 
 }
 
-// orginal code that was later divided up into functions 
-//   // pop() card4 and push to players hand
-  // let card4 = deckArray.pop();
-  // playerHand.push(card4);
-// // create img and append to player at table
-//   let cardImg4 = document.createElement('img');
-//   cardImg4.setAttribute('src', card4.imageURL);
-//   player.appendChild(cardImg4);
+
+// Hit button event listener 
+// deals card to player and appends new image to table
+hit.addEventListener('click', () => {
+  
+  // pop() card and push to players hand
+  let card = deckArray.pop();
+  playerHand.push(card);
+
+  
+  let cardImg = document.createElement('img');
+  cardImg.setAttribute('src', card.imageURL);
+  player.appendChild(cardImg);
+
+
+})
+
+// Stand button event listener
+// deals card to dealer and appends new image to table
+stand.addEventListener('click', () => {
+  // check dealers score (if < 17, deal another card) 
+  // as long as dealer is less than 17, then dealer gets another card
+
+  // pop() card and push to dealers hand
+  let card = deckArray.pop();
+  dealerHand.push(card);
+
+  
+  let cardImg = document.createElement('img');
+  cardImg.setAttribute('src', card.imageURL);
+  dealer.appendChild(cardImg);
+
 
 })
 
@@ -140,46 +181,9 @@ function render(dealerHand, playerHand){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// *
-// 52 cards - an array of objects
-// each card has a suit, value, image url, 
-// 2d.png, AH, 4C (for each card)
-// and array with 52 elements 
-// create a loop to loop through and create deck of cards
-
-// dealing 4 cards
-// shuffle -logic provided for us
-// pop() 4 objects off the end of the array 
-// used popped objects to place the images on screen (DOM manipulation)
-//  have dealerArray and playerArray
-// cards will be pushed to the above arrays to keep track of what has been played and scores
-// have to calculate the value of each hand
-
-// hit me button (event listener)
-    // -pop card from deck array 
-    // -push this card to player hand
-
-// stand (event listener)
-//   process starts for the dealer
-// check value of dealer
-// as long as dealer is less than 17, then dealer gets another card
-
+// Blackjack rules
 // When the dealer has served every player, the dealers face-down card is turned up. If the total is 17 or more, it must stand. If the total is 16 or under, they must take a card. The dealer must continue to take cards until the total is 17 or more, at which point the dealer must stand. If the dealer has an ace, and counting it as 11 would bring the total to 17 or more (but not over 21), the dealer must count the ace as 11 and stand. The dealer's decisions, then, are automatic on all plays, whereas the player always has the option of taking one or more cards.
-// You may not have time but dealer should also hit on a “soft 17” which is when he has an Ace and a 6 -->
-//  button dealer.addEventListener('click', () => {
-  
-// })
+// dealer should also hit on a “soft 17” which is when he has an Ace and a 6 
 // switch statement looking  for e.target.id ??
 
 
