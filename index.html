@@ -1,66 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blackjack</title>
-  <script src="scripts/main.js"></script>
-</head>
-<body>
-  <div class="message-box" id="messages"></div>
-  <div class="table">
-    <div class="player">
-      <label class="player-name">Dealer: 
-        <span id="dealer-points" class="points"></span>
-      </label>
-      <div id="dealer-hand" class="hand">
-        <!-- Dealer Hand -->
-      </div>
-    </div>
-    <div class="player">
-      <label class="player-name">Player: 
-        <span id="player-points" class="points"></span>
-      </label>
-      <div id="player-hand" class="hand">
-        <!-- Player Hand -->
-      </div>
-    </div>
-    <div class="buttons">
-      <button id="deal-button" type="button">Deal</button>
-      <button id="hit-button" type="button">Hit</button>
-      <button id="stand-button" type="button">Stand</button>
-    </div>
-  </div>
-</body>
-<!-- // *
-// 52 cards - an array of objects
-// each card has a suit, value, image url, 
-// 2d.png, AH, 4C (for each card)
-// and array with 52 elements 
-// create a loop to loop through and create deck of cards
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-// dealing 4 cards
-// shuffle -logic provided for us
-// pop() 4 objects off the end of the array 
-// used popped objects to place the images on screen (DOM manipulation)
-//  have dealerArray and playerArray
-// cards will be pushed to the above arrays to keep track of what has been played and scores
-// have to calculate the value of each hand
-
-// hit me button (event listener)
-    // -pop card from deck array 
-    // -push this card to player hand
-
-// stand (event listener)
-//   process starts for the dealer
-// check value of dealer
-// as long as dealer is less than 17, then dealer gets another card
-
-// When the dealer has served every player, the dealers face-down card is turned up. If the total is 17 or more, it must stand. If the total is 16 or under, they must take a card. The dealer must continue to take cards until the total is 17 or more, at which point the dealer must stand. If the dealer has an ace, and counting it as 11 would bring the total to 17 or more (but not over 21), the dealer must count the ace as 11 and stand. The dealer's decisions, then, are automatic on all plays, whereas the player always has the option of taking one or more cards.
-// You may not have time but dealer should also hit on a “soft 17” which is when he has an Ace and a 6 -->
-<!-- button dealer.addEventListener('click', () => {
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   
-})
-switch statement looking  for e.target.id ?? -->
+  <style>
 
+body, html {
+  height: 100%;
+  margin: 0px;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url('images/backgroundtable.jpeg');
+  /* Full height */
+  height: 100%;
+  width: 100%;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container {
+  width: 900px;
+  height: 600px;
+  
+  
+}
+
+.table{
+  /* background-color: rgb(8, 97, 8); */
+  /* background-image: url('images/greenfelt.jpeg');
+  background-repeat: no-repeat; */
+  /* opacity: 50%; */
+  height: 100%;
+  width: 100%;
+}
+img{
+  height: 200px;
+}
+
+  </style>
+  </head>
+  <body>
+
+    <div class="parallax d-flex">
+      <!-- backgroundimage container -->
+    
+    <div class="container">
+      <div class="message-box" id="messages"></div>
+      <div class="table d-flex flex-column">
+        <div class="player row m-2 h-50 align-items-center">
+          <label class="player-name text-white m-2">Dealer: 
+            <span id="dealer-points" class="points text-white"></span>
+          </label>
+          <div id="dealer-hand" class="hand">
+            <!-- Dealer Hand -->
+            <!-- card images go here -->
+          </div>
+        </div>
+        <div class="player row m-2 h-50 align-items-center">
+          <label class="player-name text-white m-2">Player: 
+            <span id="player-points" class="points text-white"></span>
+          </label>
+          <div id="player-hand" class="hand">
+            <!-- Player Hand -->
+            <!-- card images go here -->
+            <!-- <img src="images/jack_of_clubs.png" alt=""> -->
+            
+          </div>
+        </div>
+        <div class="buttons row m-1 justify-content-center">
+          <button id="deal-button" type="button" class="col-2 mx-2">Deal</button>
+          <button id="hit-button" type="button" class="col-2 mx-2">Hit</button>
+          <button id="stand-button" type="button" class="col-2 mx-2">Stand</button>
+        </div>
+      </div>
+    </div>
+    <!-- end of container-div -->
+    </div>
+    <!-- end of parallax div -->
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>
