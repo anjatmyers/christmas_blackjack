@@ -11,6 +11,17 @@ var player = document.querySelector('#player-hand');
   var hit = document.querySelector('#hit-button');
   var stand = document.querySelector('#stand-button');
 
+// locating message div
+var dealerMessages = document.querySelector('#dealermessages');
+var playerMessages = document.querySelector('#playermessages')
+
+ // initializing player points 
+var dealerPoints = 0
+var playerPoints = 0
+
+// set inital dealer and player hand arrays 
+dealerHand = [];
+playerHand =[]; 
 
 // create the deck
 deckArray = []
@@ -52,13 +63,11 @@ for (var i=2; i < 15; i++){
 buildDeck();
 
 // console.log(deckArray);
-// end of building deck function 
+
+// END of building deck function 
 
 
-// get image from object function
-function getCardImage(obj){
-  return obj.imageURL;
-}
+
 
 
 // shuffle array provided by V
@@ -75,14 +84,15 @@ function shuffleArray(array) {
 
 
 
-// set inital dealer and player hand arrays 
-
-dealerHand = [];
-playerHand =[]; 
 
 // Deal button event listener: deals 4 cards - pops each card from deckArray and pushes to the dealer or player's hand. Calls to the render function to place images on table 
 
 deal.addEventListener('click', () => {
+  // clear table of cards
+  dealer.textContent = ""
+  player.textContent = ""
+  playerMessages.textContent = ""
+  dealerMessages.textContent = ""
   // shuffle the deck
   shuffleArray(deckArray);
   // dealer and player arrays 
@@ -110,15 +120,6 @@ deal.addEventListener('click', () => {
 render(dealerHand, playerHand);
 
 
-// orginal code that was later divided up into functions 
-//   // pop() card4 and push to players hand
-  // let card4 = deckArray.pop();
-  // playerHand.push(card4);
-// // create img and append to player at table
-//   let cardImg4 = document.createElement('img');
-//   cardImg4.setAttribute('src', card4.imageURL);
-//   player.appendChild(cardImg4);
-
 })
 
 // render function that displays dealer and player hand on the table 
@@ -137,6 +138,11 @@ function render(dealerHand, playerHand){
     player.appendChild(cardImg2);
    }) 
 
+  //  calculate points to see if dealer needs to keep going
+  // or if either player has already reached 21
+   calculateDealerPoints(dealerHand);
+   calculatePlayerPoints(playerHand);
+
 }
 
 
@@ -153,27 +159,147 @@ hit.addEventListener('click', () => {
   cardImg.setAttribute('src', card.imageURL);
   player.appendChild(cardImg);
 
+  calculatePlayerPoints(playerHand);
+
 
 })
 
-// Stand button event listener
-// deals card to dealer and appends new image to table
+// Stand button event listener calls the dealOrNoDeal to see how many cards to draw
 stand.addEventListener('click', () => {
-  // check dealers score (if < 17, deal another card) 
-  // as long as dealer is less than 17, then dealer gets another card
-
-  // pop() card and push to dealers hand
-  let card = deckArray.pop();
-  dealerHand.push(card);
-
-  
-  let cardImg = document.createElement('img');
-  cardImg.setAttribute('src', card.imageURL);
-  dealer.appendChild(cardImg);
-
+  dealOrNodeal(calculateDealerPoints(dealerHand));
 
 })
 
+// DEAL OR NO DEAL function: draws cards for dealer until conditions are met
+function dealOrNodeal (points){
+  // check dealers score
+  let dealerpoints = calculateDealerPoints(dealerHand);
+
+  // if score < 17, deal another card
+  if (dealerpoints < 17){
+    let card = deckArray.pop();
+    dealerHand.push(card);
+  
+    let cardImg = document.createElement('img');
+    cardImg.setAttribute('src', card.imageURL);
+    dealer.appendChild(cardImg);
+
+    calculateDealerPoints(dealerHand);
+    // call function again to check if score is now over 17
+    dealOrNodeal(dealerpoints);
+    }
+
+  // calculateDealerPoints(dealerHand); delete ???
+
+// then once score is over 17, keep going 
+if (dealerpoints === 21){
+dealerMessages.textContent = `Perfect ${dealerpoints} points for the dealer.`
+determineWinner();
+} else if(dealerpoints < 21 && dealerpoints >= 17){
+  dealerMessages.textContent = `The dealer stands at ${dealerpoints} points.`
+  determineWinner();
+}
+  }
+
+
+// CALCULATE DEALER POINTS function:
+function calculateDealerPoints(array){
+  var dealerPoints = 0
+
+valueArr = array.map(function(obj){
+  return obj.value
+})
+
+for (var i=0; i< valueArr.length; i++){
+
+  if (valueArr[i] > 11){
+    dealerPoints += 10;
+  } else if (valueArr[i] < 11){
+    dealerPoints += valueArr[i];
+  } else if (valueArr[i] === 11){
+    // if an ace: value of 1 if dealerPoints are above 10
+    if (dealerPoints > 10){
+      dealerPoints += 1;
+      // if dealerPoints are above or equal to 10, ace value is 11
+    } else if (dealerPoints <= 10){
+      dealerPoints += 11;
+    }
+  }
+
+}
+
+if (dealerPoints > 21){
+  dealerMessages.textContent = "Dealer Busts! You win! Please deal again."
+} 
+else if (dealerPoints <= 21){
+    dealerMessages.textContent = `Dealer points: ${dealerPoints}`
+}
+    
+  return dealerPoints;
+  
+} 
+
+
+
+
+
+// CALCULATE PLAYER POINTS function:
+function calculatePlayerPoints(array){
+  playerPoints = 0
+
+valueArr = array.map(function(obj){
+  return obj.value
+})
+
+for (var i=0; i< valueArr.length; i++){
+
+  if (valueArr[i] > 11){
+    playerPoints += 10;
+  } else if (valueArr[i] < 11){
+    playerPoints += valueArr[i];
+  } else if (valueArr[i] === 11){
+    // ace has value of 1 if playerPoints are above 10
+    if (playerPoints > 10){
+      playerPoints += 1;
+      // if playerPoints are above or equal to 10, ace value is 11
+    } else if (playerPoints <= 10){
+      playerPoints += 11;
+    }
+  }
+
+}
+
+if (playerPoints > 21){
+  playerMessages.textContent = "You Bust! Please deal again."
+} else if (playerPoints === 21){
+  playerMessages.textContent = "Perfect 21! Excellent."
+} else if (playerPoints < 21){
+  playerMessages.textContent = `Player points: ${playerPoints}`
+}
+
+return playerPoints;
+
+}
+
+
+
+// DETERMINE WINNER function: 
+
+function determineWinner(){
+
+  let playerpoints = calculatePlayerPoints(playerHand);
+  let dealerpoints = calculateDealerPoints(dealerHand);
+
+  if (playerpoints === dealerpoints){
+    playerMessages.textContent = "It's a Draw! Please deal again."
+  } else if(playerpoints > dealerpoints && playerpoints <= 21){
+    playerMessages.textContent = `Player points: ${playerpoints} - You won! Great job!`
+  } else if(playerpoints < dealerpoints){
+    playerMessages.textContent = `Player points: ${playerpoints} - Dealer wins. Please deal again.`
+  }
+
+
+}
 
 
 
@@ -181,9 +307,8 @@ stand.addEventListener('click', () => {
 
 
 
-// Blackjack rules
-// When the dealer has served every player, the dealers face-down card is turned up. If the total is 17 or more, it must stand. If the total is 16 or under, they must take a card. The dealer must continue to take cards until the total is 17 or more, at which point the dealer must stand. If the dealer has an ace, and counting it as 11 would bring the total to 17 or more (but not over 21), the dealer must count the ace as 11 and stand. The dealer's decisions, then, are automatic on all plays, whereas the player always has the option of taking one or more cards.
-// dealer should also hit on a “soft 17” which is when he has an Ace and a 6 
-// switch statement looking  for e.target.id ??
+
+
+// switch statement looking for e.target.id ??
 
 
