@@ -117,36 +117,41 @@ deal.addEventListener('click', () => {
   playerHand.push(card4);
 
 // call to render function (puts card images on table)
-render(dealerHand, playerHand);
-
+// render(dealerHand, playerHand);
+renderDealer(dealerHand);
+renderPlayer(playerHand);
 
 })
 
-// render function that displays dealer and player hand on the table 
+// RENDER FUNCTIONS that displays dealer and player hand on the table 
 
-function render(dealerHand, playerHand){
-
+function renderDealer(dealerHand){
+  
   dealerHand.forEach(function(obj){
     let cardImg1 = document.createElement('img');
     cardImg1.setAttribute('src', obj.imageURL);
+    cardImg1.setAttribute('class', 'm-1');
     dealer.appendChild(cardImg1);
-   })  
-
-   playerHand.forEach(function(obj){
-    let cardImg2 = document.createElement('img');
-    cardImg2.setAttribute('src', obj.imageURL);
-    player.appendChild(cardImg2);
    }) 
 
-  //  calculate points to see if dealer needs to keep going
-  // or if either player has already reached 21
    calculateDealerPoints(dealerHand);
-   calculatePlayerPoints(playerHand);
+}
 
+function renderPlayer(playerHand){
+  
+  playerHand.forEach(function(obj){
+    let cardImg1 = document.createElement('img');
+    cardImg1.setAttribute('src', obj.imageURL);
+    cardImg1.setAttribute('class', 'm-1');
+    player.appendChild(cardImg1);
+   }) 
+
+   calculatePlayerPoints(playerHand);
 }
 
 
-// Hit button event listener 
+
+// HIT BUTTON event listener 
 // deals card to player and appends new image to table
 hit.addEventListener('click', () => {
   
@@ -157,6 +162,7 @@ hit.addEventListener('click', () => {
   
   let cardImg = document.createElement('img');
   cardImg.setAttribute('src', card.imageURL);
+  cardImg.setAttribute('class', 'm-1');
   player.appendChild(cardImg);
 
   calculatePlayerPoints(playerHand);
@@ -182,6 +188,7 @@ function dealOrNodeal (points){
   
     let cardImg = document.createElement('img');
     cardImg.setAttribute('src', card.imageURL);
+    cardImg.setAttribute('class', 'm-1');
     dealer.appendChild(cardImg);
 
     calculateDealerPoints(dealerHand);
