@@ -13,11 +13,27 @@ var player = document.querySelector('#player-hand');
 
 // locating message div
 var dealerMessages = document.querySelector('#dealermessages');
-var playerMessages = document.querySelector('#playermessages')
+var playerMessages = document.querySelector('#playermessages');
+var placebet = document.querySelector('#placebet');
+var currentbet = document.querySelector('#currentbet');
 
  // initializing player points 
 var dealerPoints = 0
 var playerPoints = 0
+
+// initializing bet amount and starting money 
+var deposit = document.querySelector('#deposit');
+var cash = 500; 
+deposit.textContent = `$${cash}`
+var betAmount = 0;
+var startingbet = 0;
+currentbet.textContent = `Current Bet: $${startingbet}`
+
+// locting bet buttons
+var button25 = document.querySelector('#button25')
+var button50 = document.querySelector('#button50')
+var button100 = document.querySelector('#button100')
+var buttonAllIn = document.querySelector('#buttonAllIn')
 
 // set inital dealer and player hand arrays 
 dealerHand = [];
@@ -98,6 +114,18 @@ deal.addEventListener('click', () => {
   // dealer and player arrays 
   dealerHand = [];
   playerHand =[];
+
+  // check to see if the player has money to make a bet
+  if (cash === 0){
+    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
+    // function for ending the game 
+  dealer.textContent = ""
+  player.textContent = ""
+  playerMessages.textContent = ""
+  dealerMessages.textContent = ""
+  return 
+  }
+
 
   // pop() card1 and push to dealers hand 
   let card1 = deckArray.pop();
@@ -236,6 +264,8 @@ for (var i=0; i< valueArr.length; i++){
 }
 
 if (dealerPoints > 21){
+  cash += betAmount;
+  deposit.textContent = `$${cash}`
   dealerMessages.textContent = "Dealer Busts! You win! Please deal again."
 } 
 else if (dealerPoints <= 21){
@@ -245,8 +275,6 @@ else if (dealerPoints <= 21){
   return dealerPoints;
   
 } 
-
-
 
 
 
@@ -277,6 +305,8 @@ for (var i=0; i< valueArr.length; i++){
 }
 
 if (playerPoints > 21){
+  cash -= betAmount;
+  deposit.textContent = `$${cash}`
   playerMessages.textContent = "You Bust! Please deal again."
 } else if (playerPoints === 21){
   playerMessages.textContent = "Perfect 21! Excellent."
@@ -298,15 +328,76 @@ function determineWinner(){
   let dealerpoints = calculateDealerPoints(dealerHand);
 
   if (playerpoints === dealerpoints){
+    // cash += betAmount;
+    // deposit.textContent = `$${cash}`
     playerMessages.textContent = "It's a Draw! Please deal again."
   } else if(playerpoints > dealerpoints && playerpoints <= 21){
+    cash += betAmount;
+    deposit.textContent = `$${cash}`
     playerMessages.textContent = `Player points: ${playerpoints} - You won! Great job!`
   } else if(playerpoints < dealerpoints){
+    cash -= betAmount;
+    deposit.textContent = `$${cash}`
     playerMessages.textContent = `Player points: ${playerpoints} - Dealer wins. Please deal again.`
   }
 
 
 }
+
+
+function placeBet(){
+  
+  placebet.textContent = "Please place your bet."
+  
+}
+
+
+button25.addEventListener('click', () => {
+  placebet.textContent = ""
+  if (cash === 0){
+    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
+  }
+  currentbet.textContent = `Current Bet: $${25}`
+   return betAmount = 25;
+
+})
+button50.addEventListener('click', () => {
+  placebet.textContent = ""
+  if (cash === 0){
+    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
+  }
+  currentbet.textContent = `Current Bet: $${50}`
+  return betAmount = 50;
+
+})
+button100.addEventListener('click', () => {
+  placebet.textContent = ""
+  if (cash === 0){
+    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
+  }
+  currentbet.textContent = `Current Bet: $${100}`
+  return betAmount = 100;
+
+})
+buttonAllIn.addEventListener('click', () => {
+  placebet.textContent = ""
+  if (cash === 0){
+    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
+  }
+  currentbet.textContent = `Current Bet: $${cash}`
+  return betAmount = cash;
+
+})
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -14,6 +14,7 @@
 body, html {
   height: 100%;
   margin: 0px;
+  background-color: rgb(14, 67, 14);
 }
 
 .parallax {
@@ -35,7 +36,7 @@ body, html {
 .container {
   width: 900px;
   height: 600px;
-  
+  /* background-color: green; */
   
 }
 
@@ -55,15 +56,16 @@ img{
   </head>
   <body>
 
-    <div class="parallax d-flex">
+    <div class="parallax d-flex flex-column">
       <!-- backgroundimage container -->
     
-    <div class="container">
+    <div class="container m-3">
       <div class="message-box text-white" id="dealermessages"></div>
       <div class="message-box text-white" id="playermessages"></div>
+      <div class="message-box text-white h4" id="placebet"></div>
       <div class="table d-flex flex-column">
         <div class="player row m-2 h-50 align-items-center">
-          <label class="player-name text-white m-2">Dealer: 
+          <label class="player-name text-white m-2 h5">Dealer: 
             <span id="dealer-points" class="points text-white"></span>
           </label>
           <div id="dealer-hand" class="hand">
@@ -72,7 +74,7 @@ img{
           </div>
         </div>
         <div class="player row m-2 h-50 align-items-center">
-          <label class="player-name text-white m-2">Player: 
+          <label class="player-name text-white m-2 h5">Player: 
             <span id="player-points" class="points text-white"></span>
           </label>
           <div id="player-hand" class="hand">
@@ -90,6 +92,34 @@ img{
       </div>
     </div>
     <!-- end of container-div -->
+
+    <div class="bank m-3 text-white h5 p-3 d-flex flex-column align-items-center">
+      Player's cash:  
+      <div id="deposit"></div>
+
+      <div class="btn-group dropleft m-2">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Place Your Bet
+        </button>
+        <div class="dropdown-menu bg-warning">
+          <!-- Dropdown menu links -->
+        <button class='m-2 h6' id='button25'>Bet $25</button>
+        <button class='m-2 h6' id='button50'>Bet $50</button>
+        <button class='m-2 h6' id='button100'>Bet $100</button>
+        <button class='m-2 h6' id='buttonAllIn'>I'm feelin' lucky</button>
+        </div>
+      </div>
+      
+      <div id="currentbet" class=></div>
+
+      </div>
+      <!-- end of bank div -->
+      
+
+    </div>
+  
+
+
     </div>
     <!-- end of parallax div -->
 
