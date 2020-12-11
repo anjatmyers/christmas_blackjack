@@ -30,14 +30,38 @@ body, html {
   background-size: cover;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.containerOutside {
+  height: 100%;
+  width: 100%;
 }
 
 
-.container {
+.container1 {
   width: 900px;
-  height: 600px;
-  /* background-color: green; */
+  height: 300px;
+  background-color: green;
   
+}
+.container2 {
+  width: 900px;
+  height: 300px;
+  background-color:rgb(106, 106, 238);
+  
+}
+.containerMiddle{
+  width: 1000px;
+  height: 300px;
+  background-color: pink;
+  
+}
+
+.buttonContainer{
+  position: fixed;
+  top: 40px;
+  left: 20px;
 }
 
 .table{
@@ -59,13 +83,63 @@ img{
   </head>
   <body>
 
-    <div class="parallax d-flex flex-column">
+    <div class="parallax">
       <!-- backgroundimage container -->
+
+
+<!-- Start of modal box -->
+<div class="buttonContainer">
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+    Here Are The Rules
+  </button>
+  </div>
+  <!-- end of button container -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolores excepturi adipisci laboriosam voluptatum dolore harum quis dicta, enim quos eligendi, nostrum vero blanditiis distinctio, fuga veniam error officia est?
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolores excepturi adipisci laboriosam voluptatum dolore harum quis dicta, enim quos eligendi, nostrum vero blanditiis distinctio, fuga veniam error officia est?
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolores excepturi adipisci laboriosam voluptatum dolore harum quis dicta, enim quos eligendi, nostrum vero blanditiis distinctio, fuga veniam error officia est?
+       
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of modal box -->
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="containerOutside d-flex flex-column justify-content-center align-items-center">
+
     
-    <div class="container m-3">
+
+
+
+    
+    <div class="container1 m-3">
       <div class="message-box text-white" id="dealermessages"></div>
-      <div class="message-box text-white" id="playermessages"></div>
-      <div class="message-box text-white h4" id="placebet"></div>
       <div class="table d-flex flex-column">
         <div class="player row m-2 h-50 align-items-center">
           <label class="player-name text-white m-2 h5">Dealer: 
@@ -76,27 +150,14 @@ img{
             <!-- card images go here -->
           </div>
         </div>
-        <div class="player row m-2 h-50 align-items-center">
-          <label class="player-name text-white m-2 h5">Player: 
-            <span id="player-points" class="points text-white"></span>
-          </label>
-          <div id="player-hand" class="hand">
-            <!-- Player Hand -->
-            <!-- card images go here -->
-            <!-- <img src="images/jack_of_clubs.png" alt=""> -->
-            
-          </div>
-        </div>
-        <div class="buttons row m-1 justify-content-center">
-          <button id="deal-button" type="button" class="col-2 mx-2">Deal</button>
-          <button id="hit-button" type="button" class="col-2 mx-2">Hit</button>
-          <button id="stand-button" type="button" class="col-2 mx-2">Stand</button>
-        </div>
       </div>
-    </div>
-    <!-- end of container-div -->
 
-    <div class="bank m-3 text-white h5 p-3 d-flex flex-column align-items-center">
+    </div>
+    <!-- end of container-div 1-->
+
+    <div class="containerMiddle row">
+      <!-- start of bank div -->
+    <div class="bank m-3 text-white h5 p-3 d-flex flex-column align-items-center justify-content-center bg-warning ">
       Player's cash:  
       <div id="deposit"></div>
 
@@ -114,15 +175,51 @@ img{
       </div>
       
       <div id="currentbet" class=></div>
-
-      </div>
+    </div>
       <!-- end of bank div -->
+
+      <!-- start of deal/hit/stand buttons -->
+      <div class="buttons row m-1 ml-3 justify-content-center bg-danger w-50">
+        <button id="deal-button" type="button" class="col mx-2">Deal</button>
+        <button id="hit-button" type="button" class="col mx-2">Hit</button>
+        <button id="stand-button" type="button" class="col mx-2">Stand</button>
+      </div>
+      
+      <!-- end of buttons -->
+
+    </div>
+    <!-- end of middle container -->
+
+<!-- start of player container -->
+    <div class="container2 m-3">
+      <div class="message-box text-white" id="playermessages"></div>
+      <div class="message-box text-white h4" id="placebet"></div>
+      <div class="table d-flex flex-column">
+        <div class="player row m-2 h-50 align-items-center">
+          <label class="player-name text-white m-2 h5">Player: 
+            <span id="player-points" class="points text-white"></span>
+          </label>
+          <div id="player-hand" class="hand">
+            <!-- Player Hand -->
+            <!-- card images go here -->
+            <!-- <img src="images/jack_of_clubs.png" alt=""> -->
+            
+          </div>
+        </div>
+       
+      </div>
+      <!--  -->
+    </div>
+<!-- end of container div 2 -->
+   
+
+    
       
 
     </div>
   
-
-
+    </div>
+    <!-- end of outside container -->
     </div>
     <!-- end of parallax div -->
 
