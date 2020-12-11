@@ -126,6 +126,10 @@ deal.addEventListener('click', () => {
   return 
   }
 
+  if (deckArray.length < 4){
+    placebet.textContent = "The deck is almost out! Collect your earnings and refresh the page to start a new game."
+  }
+
 
   // pop() card1 and push to dealers hand 
   let card1 = deckArray.pop();
@@ -354,41 +358,40 @@ function placeBet(){
 
 button25.addEventListener('click', () => {
   placebet.textContent = ""
-  if (cash === 0){
-    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
-  }
+  checkCash();
   currentbet.textContent = `Current Bet: $${25}`
    return betAmount = 25;
 
 })
 button50.addEventListener('click', () => {
   placebet.textContent = ""
-  if (cash === 0){
-    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
-  }
+  checkCash();
   currentbet.textContent = `Current Bet: $${50}`
   return betAmount = 50;
 
 })
 button100.addEventListener('click', () => {
   placebet.textContent = ""
-  if (cash === 0){
-    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
-  }
+  checkCash();
   currentbet.textContent = `Current Bet: $${100}`
   return betAmount = 100;
 
 })
 buttonAllIn.addEventListener('click', () => {
   placebet.textContent = ""
-  if (cash === 0){
-    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
-  }
+  checkCash();
   currentbet.textContent = `Current Bet: $${cash}`
   return betAmount = cash;
 
 })
 
+function checkCash(){
+  if (cash === 0){
+    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
+  } else if (cash > 1000){
+    placebet.textContent = "Great job, you've doubled your starting cash! Keep playing if you're feeling lucky."
+  } 
+}
 
 
 
