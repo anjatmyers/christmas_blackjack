@@ -64,6 +64,12 @@ body, html {
   left: 20px;
 }
 
+.darkred{
+  background-color:rgb(167, 4, 4);
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .table{
   /* background-color: rgb(8, 97, 8); */
   /* background-image: url('images/greenfelt.jpeg');
@@ -72,9 +78,11 @@ body, html {
   height: 100%;
   width: 100%;
 }
+
 img{
   height: 200px;
 }
+
 .dropdown{
   background-color: rgb(14, 67, 14);
 }
@@ -87,13 +95,14 @@ img{
       <!-- backgroundimage container -->
 
 
-<!-- Start of modal box -->
-<div class="buttonContainer">
-  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+<!-- start of buttons in top left corner -->
+<div class="buttonContainer d-flex flex-column">
+  <button type="button" class="btn darkred mb-2" data-toggle="modal" data-target="#exampleModal">
     Here Are The Rules
   </button>
+  <button onClick="window.location.reload();" type="button" class="btn darkred" data-toggle="modal" data-target="#exampleModal">Restart Game</button>
   </div>
-  <!-- end of button container -->
+  <!-- end of buttons container -->
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -179,10 +188,12 @@ img{
       <!-- end of bank div -->
 
       <!-- start of deal/hit/stand buttons -->
-      <div class="buttons row m-1 ml-3 justify-content-center bg-danger w-50">
-        <button id="deal-button" type="button" class="col mx-2">Deal</button>
-        <button id="hit-button" type="button" class="col mx-2">Hit</button>
-        <button id="stand-button" type="button" class="col mx-2">Stand</button>
+      <div class="buttons row m-1 ml-3 justify-content-center align-items-center bg-danger w-75">
+        
+        <button type="button" id="deal-button" class="btn darkred mx-2 px-5" data-toggle="modal">Deal</button>
+        <img src="images/backofcards.jpeg" alt="back of cards" id="hit-button" class="backCard" style="height: 225px;">
+        <!-- <button  type="button" >HIT</button> -->
+        <button type="button" id="stand-button" class="btn darkred mx-2 px-5" data-toggle="modal">Stand</button>
       </div>
       
       <!-- end of buttons -->
