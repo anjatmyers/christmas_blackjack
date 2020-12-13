@@ -32,23 +32,37 @@ var startingbet = 0;
 currentbet.textContent = `Current Bet: ${startingbet}lbs`
 
 // locting bet buttons
-var button25 = document.querySelector('#button25')
-var button50 = document.querySelector('#button50')
-var button100 = document.querySelector('#button100')
-var buttonAllIn = document.querySelector('#buttonAllIn')
+var button25 = document.querySelector('#button25');
+var button50 = document.querySelector('#button50');
+var button100 = document.querySelector('#button100');
+var buttonAllIn = document.querySelector('#buttonAllIn');
+var santa = document.querySelector('#santa');
 
-// locating song element
+// locating audio buttons
 var play = document.querySelector('#play');
 var pause = document.querySelector('#pause');
+var rules = document.querySelector('#rules');
 
+// add audio clips
 var audio = new Audio("images/jinglebells.mp3");
+var audioHoHoHo = new Audio("images/hohoho.mp3");
 
+// add audio to onclicks 
 play.onclick = function() {
   audio.play();
 }
 pause.onclick = function() {
   audio.pause();
 }
+
+rules.onclick = function() {
+  audioHoHoHo.play();
+}
+santa.onclick = function() {
+  audioHoHoHo.play();
+}
+
+
 
 // set inital dealer and player hand arrays 
 dealerHand = [];

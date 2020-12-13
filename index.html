@@ -104,6 +104,10 @@ img{
   margin: 5px;
 }
 
+#santa {
+cursor: pointer;
+}
+
 /* .dropdown{
   background-color: rgb(14, 67, 14);
 } */
@@ -179,7 +183,7 @@ body{
 <!-- start of buttons in top left corner -->
 <div class="buttonContainer d-flex flex-column">
   <!-- RULES BUTTON -->
-  <button type="button" class="btn bg-success text-white mb-2" data-toggle="modal" data-target="#exampleModal">
+  <button type="button" class="btn bg-success text-white mb-2" data-toggle="modal" data-target="#exampleModal" id="rules">
     Here Are The Rules
   </button>
   <!-- restart button -->
@@ -244,8 +248,10 @@ body{
         <div class="player row m-2 h-50 align-items-center h-75">
           <label class="player-name text-white m-2 h4 myfont"> 
              <!--this is where the DEALER label was  -->
+             <!-- SANTA IMAGE -->
             <span id="dealer-points" class="points text-white"></span>
-            <img src="images/santa.png" alt="santa">
+            <img src="images/santa.png" alt="santa" id="santa" title="Click to hear from Santa">
+            <span class="tooltiptext"></span>
           </label>
           <div id="dealer-hand" class="hand bg-secondary">
             <!-- Dealer Hand -->
