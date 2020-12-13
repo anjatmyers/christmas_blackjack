@@ -8,7 +8,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
+
+    <!-- link to google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
+
+   
   <style>
 
 body, html {
@@ -42,19 +48,19 @@ body, html {
 .container1 {
   width: 900px;
   height: 300px;
-  background-color: green;
+  /* background-color: green; */
   
 }
 .container2 {
   width: 900px;
   height: 300px;
-  background-color:rgb(106, 106, 238);
+  /* background-color:rgb(106, 106, 238); */
   
 }
 .containerMiddle{
   width: 1000px;
   height: 300px;
-  background-color: pink;
+  /* background-color: pink; */
   
 }
 
@@ -64,10 +70,24 @@ body, html {
   left: 20px;
 }
 
-.darkred{
+
+.midCardSection{
+  width: 55%;
+}
+
+/* .darkred{
   background-color:rgb(167, 4, 4);
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+} */
+.medred{
+  background-color:rgb(221, 9, 9);
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.modalred {
+  background-color: rgb(247, 72, 72);
+  font-size: 20px;
 }
 
 .table{
@@ -81,47 +101,132 @@ body, html {
 
 img{
   height: 200px;
+  margin: 5px;
 }
 
-.dropdown{
+/* .dropdown{
   background-color: rgb(14, 67, 14);
+} */
+
+.myfont {
+  font-family: 'Russo One', sans-serif;
 }
+
+
+/* text css */
+.brand-logo {
+    position: absolute;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+    white-space: nowrap;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 6px #292736, 0 0 8px #292736, 0 0 10px #292736, 0 0 12px #292736, 0 0 14px #292736;
+    animation: glow .59s infinite alternate;
+}
+body{
+  background-color:#131219;
+}
+/* Animation as suggested by Ismail Ghallou */
+@keyframes glow {
+    to {
+     text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 0 12px rgb(41, 158, 41), 0 0 16px rgb(41, 158, 41), 0 0 20px rgb(41, 158, 41), 0 0 24px rgb(41, 158, 41), 0 0 28px rgb(41, 158, 41);
+    }
+  }
+  .brand-logo{
+          text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 6px #292736, 0 0 8px #292736, 0 0 10px #292736, 0 0 12px #292736, 0 0 14px #292736;
+          animation: glow .59s infinite alternate;
+  }
+/* end text */
+
+/* snow css */
+.snow-bg {
+   position: relative;
+}
+
+.snow-bg:after {
+   content: '';
+   display: block;
+   position: absolute;
+   z-index: 2;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   pointer-events: none;
+   background-image: url('https://library.elementor.com/resources/christmas-snow-effect/s1.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s2.png'), url('https://library.elementor.com/resources/christmas-snow-effect/s3.png');
+    animation: snow 10s linear infinite;
+}
+
+@keyframes snow {
+ 0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+ 50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+ 100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+/* snow css */
+
+
 
   </style>
   </head>
   <body>
 
-    <div class="parallax">
+    <!-- <audio src= "images/jinglebells.mp3" autoplay="autoplay" loop="loop" type="audio/mp3" id="song"></audio> -->
+
+
+    <div class="parallax snow-bg">
       <!-- backgroundimage container -->
 
 
 <!-- start of buttons in top left corner -->
 <div class="buttonContainer d-flex flex-column">
-  <button type="button" class="btn darkred mb-2" data-toggle="modal" data-target="#exampleModal">
+  <!-- RULES BUTTON -->
+  <button type="button" class="btn bg-success text-white mb-2" data-toggle="modal" data-target="#exampleModal">
     Here Are The Rules
   </button>
-  <button onClick="window.location.reload();" type="button" class="btn darkred" data-toggle="modal" data-target="#exampleModal">Restart Game</button>
+  <!-- restart button -->
+  <button onClick="window.location.reload();" type="button" class="btn bg-danger text-white my-1" data-toggle="modal" data-target="#exampleModal">Restart Game</button>
+  <!--  -->
+  <button onClick="window.location.reload();" type="button" class="btn bg-success mt-2 text-white" data-toggle="modal" id="song">Play Music
+    <img src="images/pause.png" alt="">
+  </button>
   </div>
   <!-- end of buttons container -->
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content modalred">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">
+            <div class="bg">
+              <a ihref="#" class="brand-logo">Welcome to the 
+                NorthPole Casino
+              </a>
+            </div>
+          </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolores excepturi adipisci laboriosam voluptatum dolore harum quis dicta, enim quos eligendi, nostrum vero blanditiis distinctio, fuga veniam error officia est?
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolores excepturi adipisci laboriosam voluptatum dolore harum quis dicta, enim quos eligendi, nostrum vero blanditiis distinctio, fuga veniam error officia est?
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. In dolores excepturi adipisci laboriosam voluptatum dolore harum quis dicta, enim quos eligendi, nostrum vero blanditiis distinctio, fuga veniam error officia est?
+          No one but the Elves know that Santa is a lover of Blackjack. Afterall, he has to have a hobby to occupy the other 364 days of the year! He's gotten pretty good over the decades. If you'd like to try your hand with the Big Man, here are the rules you need to know:
+
+          <ol>
+            <li>You start with 500lbs of Christmas Spirit</li>
+            <li>Place your bet before dealing</li>
+            <li>When you triple your weight of Xmas Spirit, you win!</li>
+            <li>If you run out of Xmas Spirit, you lose.</li>
+            <li>DON'T TELL MRS.CLAUSE! (this is Santa's little secret)</li>
+          </ol>
+
+          Have fun and good luck! 
+          
        
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
       </div>
@@ -130,35 +235,26 @@ img{
   <!-- end of modal box -->
 
 
-
-
-
-
-
-
-
-
-
-
+<!-- start of middle section -->
     <div class="containerOutside d-flex flex-column justify-content-center align-items-center">
 
     
-
-
-
-    
     <div class="container1 m-3">
-      <div class="message-box text-white" id="dealermessages"></div>
-      <div class="table d-flex flex-column">
-        <div class="player row m-2 h-50 align-items-center">
-          <label class="player-name text-white m-2 h5">Dealer: 
+      
+      <div class="table d-flex flex-column align-items-between">
+        <div class="player row m-2 h-50 align-items-center h-75">
+          <label class="player-name text-white m-2 h4 myfont"> 
+             <!--this is where the DEALER label was  -->
             <span id="dealer-points" class="points text-white"></span>
+            <img src="images/santa.png" alt="santa">
           </label>
-          <div id="dealer-hand" class="hand">
+          <div id="dealer-hand" class="hand bg-secondary">
             <!-- Dealer Hand -->
             <!-- card images go here -->
           </div>
         </div>
+        <div class="message-box text-white myfont h5" id="dealermessages"></div>
+        <div class="message-box text-white myfont h1" id="alerts"></div>
       </div>
 
     </div>
@@ -166,19 +262,19 @@ img{
 
     <div class="containerMiddle row">
       <!-- start of bank div -->
-    <div class="bank m-3 text-white h5 p-3 d-flex flex-column align-items-center justify-content-center bg-warning ">
-      Player's cash:  
+    <div class="bank m-3 text-white h5 p-3 d-flex flex-column align-items-center justify-content-center">
+      Christmas Spirit:  
       <div id="deposit"></div>
 
       <div class="btn-group dropleft m-2">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn dropdown-toggle bg-success text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Place Your Bet
         </button>
-        <div class="dropdown-menu dropdown">
+        <div class="dropdown-menu bg-success">
           <!-- Dropdown menu links -->
-        <button class='m-2 h6' id='button25'>Bet $25</button>
-        <button class='m-2 h6' id='button50'>Bet $50</button>
-        <button class='m-2 h6' id='button100'>Bet $100</button>
+        <button class='m-2 h6' id='button25'>25 lbs</button>
+        <button class='m-2 h6' id='button50'>50 lbs</button>
+        <button class='m-2 h6' id='button100'>100 lbs</button>
         <button class='m-2 h6' id='buttonAllIn'>I'm feelin' lucky</button>
         </div>
       </div>
@@ -188,12 +284,12 @@ img{
       <!-- end of bank div -->
 
       <!-- start of deal/hit/stand buttons -->
-      <div class="buttons row m-1 ml-3 justify-content-center align-items-center bg-danger w-75">
+      <div class="buttons row m-1 ml-3 justify-content-center align-items-center midCardSection">
         
-        <button type="button" id="deal-button" class="btn darkred mx-2 px-5" data-toggle="modal">Deal</button>
-        <img src="images/backofcards.jpeg" alt="back of cards" id="hit-button" class="backCard" style="height: 225px;">
+        <button type="button" id="deal-button" class="btn medred mx-2 px-5" data-toggle="modal">Deal</button>
+        <img src="images/backCard.png" alt="back of cards" id="hit-button" class="backCard" style="height: 225px; border-radius: 3%;">
         <!-- <button  type="button" >HIT</button> -->
-        <button type="button" id="stand-button" class="btn darkred mx-2 px-5" data-toggle="modal">Stand</button>
+        <button type="button" id="stand-button" class="btn medred mx-2 px-5" data-toggle="modal">Stand</button>
       </div>
       
       <!-- end of buttons -->
@@ -202,12 +298,14 @@ img{
     <!-- end of middle container -->
 
 <!-- start of player container -->
-    <div class="container2 m-3">
-      <div class="message-box text-white" id="playermessages"></div>
+    <div class="container2 m-3 ">
+      <div class="message-box text-white myfont h5 " id="playermessages"></div>
       <div class="message-box text-white h4" id="placebet"></div>
       <div class="table d-flex flex-column">
-        <div class="player row m-2 h-50 align-items-center">
-          <label class="player-name text-white m-2 h5">Player: 
+        <div class="player row m-2 h-75 align-items-center">
+          <label class="player-name text-white m-2 h4 myfont">
+            <!-- where PLAYER label was -->
+            <img src="images/elf.png" alt="elf" class="p-1">
             <span id="player-points" class="points text-white"></span>
           </label>
           <div id="player-hand" class="hand">

@@ -11,11 +11,13 @@ var player = document.querySelector('#player-hand');
   var hit = document.querySelector('#hit-button');
   var stand = document.querySelector('#stand-button');
 
+
 // locating message div
 var dealerMessages = document.querySelector('#dealermessages');
 var playerMessages = document.querySelector('#playermessages');
 var placebet = document.querySelector('#placebet');
 var currentbet = document.querySelector('#currentbet');
+var alerts = document.querySelector('#alerts');
 
  // initializing player points 
 var dealerPoints = 0
@@ -24,16 +26,25 @@ var playerPoints = 0
 // initializing bet amount and starting money 
 var deposit = document.querySelector('#deposit');
 var cash = 500; 
-deposit.textContent = `$${cash}`
+deposit.textContent = `${cash}lbs`
 var betAmount = 0;
 var startingbet = 0;
-currentbet.textContent = `Current Bet: $${startingbet}`
+currentbet.textContent = `Current Bet: ${startingbet}lbs`
 
 // locting bet buttons
 var button25 = document.querySelector('#button25')
 var button50 = document.querySelector('#button50')
 var button100 = document.querySelector('#button100')
 var buttonAllIn = document.querySelector('#buttonAllIn')
+
+// locating song element
+var song = document.querySelector('#song');
+
+var audio = new Audio("images/jinglebells.mp3");
+
+song.onclick = function() {
+  audio.play();
+}
 
 // set inital dealer and player hand arrays 
 dealerHand = [];
@@ -42,6 +53,8 @@ playerHand =[];
 // create the deck
 deckArray = []
 
+
+// function to build deck 
 function buildDeck(){
 
   for (var i=2; i < 15; i++){
@@ -107,8 +120,8 @@ deal.addEventListener('click', () => {
   // clear table of cards
   dealer.textContent = ""
   player.textContent = ""
-  playerMessages.textContent = ""
-  dealerMessages.textContent = ""
+  alerts.textContent = ""
+  // dealerMessages.textContent = ""
   // shuffle the deck
   shuffleArray(deckArray);
   // dealer and player arrays 
@@ -117,7 +130,7 @@ deal.addEventListener('click', () => {
 
   // check to see if the player has money to make a bet
   if (cash === 0){
-    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
+    alerts.textContent = "You're out of Christmas Spirit! Maybe Blackjack isn't your strong suit."
     // function for ending the game 
   dealer.textContent = ""
   player.textContent = ""
@@ -127,7 +140,8 @@ deal.addEventListener('click', () => {
   }
 
   if (deckArray.length < 4){
-    placebet.textContent = "The deck is almost out! Collect your earnings and refresh the page to start a new game."
+    alerts.textContent = "The deck is almost out! Collect your Christmas Spirit and restart the game."
+    // change deck image
   }
 
 
@@ -232,10 +246,10 @@ function dealOrNodeal (points){
 
 // then once score is over 17, keep going 
 if (dealerpoints === 21){
-dealerMessages.textContent = `Perfect ${dealerpoints} points for the dealer.`
+dealerMessages.textContent = `Perfect ${dealerpoints} points for Santa.`
 determineWinner();
 } else if(dealerpoints < 21 && dealerpoints >= 17){
-  dealerMessages.textContent = `The dealer stands at ${dealerpoints} points.`
+  dealerMessages.textContent = `Santa stands at ${dealerpoints} points.`
   determineWinner();
 }
   }
@@ -270,10 +284,10 @@ for (var i=0; i< valueArr.length; i++){
 if (dealerPoints > 21){
   cash += betAmount;
   deposit.textContent = `$${cash}`
-  dealerMessages.textContent = "Dealer Busts! You win! Please deal again."
+  alerts.textContent = "Santa Busts! You win! Please deal again."
 } 
 else if (dealerPoints <= 21){
-    dealerMessages.textContent = `Dealer points: ${dealerPoints}`
+    dealerMessages.textContent = `Santa's points: ${dealerPoints}`
 }
     
   return dealerPoints;
@@ -311,7 +325,8 @@ for (var i=0; i< valueArr.length; i++){
 if (playerPoints > 21){
   cash -= betAmount;
   deposit.textContent = `$${cash}`
-  playerMessages.textContent = "You Bust! Please deal again."
+  alerts.textContent = "You Bust! Please deal again."
+  playerMessages.textContent = `Player points: ${playerPoints}`
 } else if (playerPoints === 21){
   playerMessages.textContent = "Perfect 21! Excellent."
 } else if (playerPoints < 21){
@@ -334,15 +349,17 @@ function determineWinner(){
   if (playerpoints === dealerpoints){
     // cash += betAmount;
     // deposit.textContent = `$${cash}`
-    playerMessages.textContent = "It's a Draw! Please deal again."
+    alerts.textContent = "It's a Draw! Please deal again."
   } else if(playerpoints > dealerpoints && playerpoints <= 21){
     cash += betAmount;
     deposit.textContent = `$${cash}`
-    playerMessages.textContent = `Player points: ${playerpoints} - You won! Great job!`
+    playerMessages.textContent = `Player points: ${playerpoints}`
+    alerts.textContent = "You won! Great job!"
   } else if(playerpoints < dealerpoints){
     cash -= betAmount;
     deposit.textContent = `$${cash}`
-    playerMessages.textContent = `Player points: ${playerpoints} - Dealer wins. Please deal again.`
+    playerMessages.textContent = `Player points: ${playerpoints}`
+    alerts.textContent = "Santa wins. Please deal again."
   }
 
 
@@ -359,21 +376,21 @@ function placeBet(){
 button25.addEventListener('click', () => {
   placebet.textContent = ""
   checkCash();
-  currentbet.textContent = `Current Bet: $${25}`
+  currentbet.textContent = `Current Bet: ${25}lbs`
    return betAmount = 25;
 
 })
 button50.addEventListener('click', () => {
   placebet.textContent = ""
   checkCash();
-  currentbet.textContent = `Current Bet: $${50}`
+  currentbet.textContent = `Current Bet: ${50}lbs`
   return betAmount = 50;
 
 })
 button100.addEventListener('click', () => {
   placebet.textContent = ""
   checkCash();
-  currentbet.textContent = `Current Bet: $${100}`
+  currentbet.textContent = `Current Bet: ${100}lbs`
   return betAmount = 100;
 
 })
@@ -387,9 +404,9 @@ buttonAllIn.addEventListener('click', () => {
 
 function checkCash(){
   if (cash === 0){
-    placebet.textContent = "You don't have any more money. Maybe Blackjack isn't your strong suit."
-  } else if (cash > 1000){
-    placebet.textContent = "Great job, you've doubled your starting cash! Keep playing if you're feeling lucky."
+    alerts.textContent = "You're out of Christmas Spirit! Maybe Blackjack isn't your strong suit."
+  } else if (cash > 1500){
+    alerts.textContent = "Great job, you've tripled your Christmas Spirit! Restart and try your luck again."
   } 
 }
 
