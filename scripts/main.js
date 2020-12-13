@@ -169,7 +169,10 @@ deal.addEventListener('click', () => {
 
   // check to see if the player has money to make a bet
   if (cash === 0){
-    alerts.textContent = "You're out of Christmas Spirit! Maybe Blackjack isn't your strong suit."
+    // play grinch wins mp3
+    grinchWins.play();
+    alerts.textContent = "Santa's out of Christmas Spirit! Maybe Blackjack isn't your strong suit."
+    
     // function for ending the game 
   dealer.textContent = ""
   player.textContent = ""
@@ -179,7 +182,7 @@ deal.addEventListener('click', () => {
   }
 
   if (deckArray.length < 4){
-    alerts.textContent = "The deck is almost out! Collect your Christmas Spirit and restart the game."
+    alerts.textContent = "The deck is almost out! Collect the Christmas Spirit and restart the game."
     // change deck image
   }
 
@@ -285,10 +288,10 @@ function dealOrNodeal (points){
 
 // then once score is over 17, keep going 
 if (dealerpoints === 21){
-dealerMessages.textContent = `Perfect ${dealerpoints} points for Santa.`
+dealerMessages.textContent = `Perfect ${dealerpoints} for the Grinch.`
 determineWinner();
 } else if(dealerpoints < 21 && dealerpoints >= 17){
-  dealerMessages.textContent = `Santa stands at ${dealerpoints} points.`
+  dealerMessages.textContent = `The Grinch stands at ${dealerpoints} points.`
   determineWinner();
 }
   }
@@ -323,10 +326,11 @@ for (var i=0; i< valueArr.length; i++){
 if (dealerPoints > 21){
   cash += betAmount;
   deposit.textContent = `$${cash}`
-  alerts.textContent = "Santa Busts! You win! Please deal again."
+  checkCash(cash);
+  alerts.textContent = "The Grinch Busts! Santa wins! Please deal again."
 } 
 else if (dealerPoints <= 21){
-    dealerMessages.textContent = `Santa's points: ${dealerPoints}`
+    dealerMessages.textContent = `The Grinch's points: ${dealerPoints}`
 }
     
   return dealerPoints;
@@ -364,12 +368,12 @@ for (var i=0; i< valueArr.length; i++){
 if (playerPoints > 21){
   cash -= betAmount;
   deposit.textContent = `$${cash}`
-  alerts.textContent = "You Bust! Please deal again."
-  playerMessages.textContent = `Player points: ${playerPoints}`
+  alerts.textContent = "Santa Busts! Please deal again."
+  playerMessages.textContent = `Santa's points: ${playerPoints}`
 } else if (playerPoints === 21){
   playerMessages.textContent = "Perfect 21! Excellent."
 } else if (playerPoints < 21){
-  playerMessages.textContent = `Player points: ${playerPoints}`
+  playerMessages.textContent = `Santa's points: ${playerPoints}`
 }
 
 return playerPoints;
@@ -392,13 +396,14 @@ function determineWinner(){
   } else if(playerpoints > dealerpoints && playerpoints <= 21){
     cash += betAmount;
     deposit.textContent = `$${cash}`
-    playerMessages.textContent = `Player points: ${playerpoints}`
-    alerts.textContent = "You won! Great job!"
+    checkCash(cash);
+    playerMessages.textContent = `Santa's points: ${playerpoints}`
+    alerts.textContent = "Santa won! Great job!"
   } else if(playerpoints < dealerpoints){
     cash -= betAmount;
     deposit.textContent = `$${cash}`
-    playerMessages.textContent = `Player points: ${playerpoints}`
-    alerts.textContent = "Santa wins. Please deal again."
+    playerMessages.textContent = `Santa's points: ${playerpoints}`
+    alerts.textContent = "The Grinch wins. Please deal again."
   }
 
 
@@ -443,9 +448,15 @@ buttonAllIn.addEventListener('click', () => {
 
 function checkCash(){
   if (cash === 0){
-    alerts.textContent = "You're out of Christmas Spirit! Maybe Blackjack isn't your strong suit."
-  } else if (cash > 1500){
-    alerts.textContent = "Great job, you've tripled your Christmas Spirit! Restart and try your luck again."
+    alerts.textContent = "Santa's out of Christmas Spirit! Maybe Blackjack isn't his strong suit."
+    // play grinch winner.mp3
+    grinchWins.play();
+  } else if (cash > 1499){
+    alerts.textContent = "Great job, Santa tripled his Christmas Spirit! You saved Christmas!"
+    // play grinch loser mp3
+    audioHoHoHo.play();
+    return
+
   } 
 }
 

@@ -251,21 +251,23 @@ body{
     <div class="container1 m-3">
       
       <div class="table d-flex flex-column align-items-between">
+        
         <div class="player row m-2 h-50 align-items-center h-75">
+          
+       
           <label class="player-name text-white m-2 h4 myfont"> 
              <!--this is where the DEALER label was  -->
-             <!-- SANTA IMAGE -->
-            <span id="dealer-points" class="points text-white"></span>
-            <img src="images/santa.png" alt="santa" id="santa" title="Click to hear from Santa">
-            <span class="tooltiptext"></span>
+              <!-- GRINCH image -->
+              <div class="message-box text-white myfont h5 col" id="dealermessages"></div>
+              <img src="images/grinch.png" alt="grinch" class="p-1" id="grinch" style="height: 300px;">
+           
           </label>
-          <div id="dealer-hand" class="hand bg-secondary">
+          <div id="dealer-hand" class="hand">
             <!-- Dealer Hand -->
             <!-- card images go here -->
           </div>
         </div>
-        <div class="message-box text-white myfont h5" id="dealermessages"></div>
-        <div class="message-box text-white myfont h1" id="alerts"></div>
+        
       </div>
 
     </div>
@@ -310,14 +312,18 @@ body{
 
 <!-- start of player container -->
     <div class="container2 m-3 ">
+      <div class="message-box text-white myfont h1" id="alerts"></div>
       <div class="message-box text-white myfont h5 " id="playermessages"></div>
       <div class="message-box text-white h4" id="placebet"></div>
       <div class="table d-flex flex-column">
         <div class="player row m-2 h-75 align-items-center">
           <label class="player-name text-white m-2 h4 myfont">
             <!-- where PLAYER label was -->
-            <!-- GRINCH image -->
-            <img src="images/grinch.png" alt="grinch" class="p-1" id="grinch" style="height: 300px;">
+             <!-- SANTA IMAGE -->
+          
+             <img src="images/santa.png" alt="santa" id="santa" title="Click to hear from Santa">
+            
+          
             <span id="player-points" class="points text-white"></span>
           </label>
           <div id="player-hand" class="hand">
