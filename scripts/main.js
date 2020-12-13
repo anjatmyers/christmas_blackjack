@@ -38,12 +38,16 @@ var button100 = document.querySelector('#button100')
 var buttonAllIn = document.querySelector('#buttonAllIn')
 
 // locating song element
-var song = document.querySelector('#song');
+var play = document.querySelector('#play');
+var pause = document.querySelector('#pause');
 
 var audio = new Audio("images/jinglebells.mp3");
 
-song.onclick = function() {
+play.onclick = function() {
   audio.play();
+}
+pause.onclick = function() {
+  audio.pause();
 }
 
 // set inital dealer and player hand arrays 

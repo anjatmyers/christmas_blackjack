@@ -172,9 +172,6 @@ body{
   </head>
   <body>
 
-    <!-- <audio src= "images/jinglebells.mp3" autoplay="autoplay" loop="loop" type="audio/mp3" id="song"></audio> -->
-
-
     <div class="parallax snow-bg">
       <!-- backgroundimage container -->
 
@@ -186,10 +183,12 @@ body{
     Here Are The Rules
   </button>
   <!-- restart button -->
-  <button onClick="window.location.reload();" type="button" class="btn bg-danger text-white my-1" data-toggle="modal" data-target="#exampleModal">Restart Game</button>
+  <button onClick="window.location.reload();" type="button" class="btn bg-danger text-white py-2 my-1" data-toggle="modal" data-target="#exampleModal">Restart Game</button>
   <!--  -->
-  <button onClick="window.location.reload();" type="button" class="btn bg-success mt-2 text-white" data-toggle="modal" id="song">Play Music
-    <img src="images/pause.png" alt="">
+  <button type="button" class="btn bg-success mt-2 py-1 text-white" data-toggle="modal">  
+    <img src="images/play.png" alt="play button" style="height: 30px;" id="play">
+    Music
+    <img src="images/pause.png" alt="pause button" style="height: 30px;" id="pause">
   </button>
   </div>
   <!-- end of buttons container -->
