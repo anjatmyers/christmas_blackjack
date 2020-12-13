@@ -37,6 +37,7 @@ var button50 = document.querySelector('#button50');
 var button100 = document.querySelector('#button100');
 var buttonAllIn = document.querySelector('#buttonAllIn');
 var santa = document.querySelector('#santa');
+var grinch = document.querySelector('#grinch');
 
 // locating audio buttons
 var play = document.querySelector('#play');
@@ -46,6 +47,11 @@ var rules = document.querySelector('#rules');
 // add audio clips
 var audio = new Audio("images/jinglebells.mp3");
 var audioHoHoHo = new Audio("images/hohoho.mp3");
+var audioDealCard = new Audio("images/dealcard.wav");
+var clickgrinch = new Audio("images/clickgrinch.mp3");
+var grinchWins = new Audio('images/winner.mp3');
+var grinchLoses = new Audio('images/loser.mp3');
+var grinchrules = new Audio('images/grinchrules.mp3');
 
 // add audio to onclicks 
 play.onclick = function() {
@@ -56,10 +62,25 @@ pause.onclick = function() {
 }
 
 rules.onclick = function() {
-  audioHoHoHo.play();
+  grinchrules.play();
 }
 santa.onclick = function() {
   audioHoHoHo.play();
+}
+
+deal.onclick = function() {
+  audioDealCard.play();
+}
+
+hit.onclick = function() {
+  audioDealCard.play();
+}
+stand.onclick = function() {
+  audioDealCard.play();
+}
+
+grinch.onclick = function() {
+  clickgrinch.play();
 }
 
 
