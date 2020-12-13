@@ -25,11 +25,11 @@ var playerPoints = 0
 
 // initializing bet amount and starting money 
 var deposit = document.querySelector('#deposit');
-var cash = 500; 
-deposit.textContent = `${cash}lbs`
+var cash = 50; 
+deposit.textContent = `${cash}%`
 var betAmount = 0;
 var startingbet = 0;
-currentbet.textContent = `Current Bet: ${startingbet}lbs`
+currentbet.textContent = `Current Bet: ${startingbet}%`
 
 // locting bet buttons
 var button25 = document.querySelector('#button25');
@@ -171,7 +171,7 @@ deal.addEventListener('click', () => {
   if (cash === 0){
     // play grinch wins mp3
     grinchWins.play();
-    alerts.textContent = "Santa's out of Christmas Spirit! Maybe Blackjack isn't your strong suit."
+    alerts.textContent = "You lost all the World's Christmas Spirit! \r\n Maybe Blackjack isn't your strong suit."
     
     // function for ending the game 
   dealer.textContent = ""
@@ -325,9 +325,19 @@ for (var i=0; i< valueArr.length; i++){
 
 if (dealerPoints > 21){
   cash += betAmount;
-  deposit.textContent = `$${cash}`
-  checkCash(cash);
-  alerts.textContent = "The Grinch Busts! Santa wins! Please deal again."
+  if (cash > 100){
+    deposit.textContent = `100%`
+    alerts.textContent = "The Grinch Busts!"
+    checkCash(cash);
+  } else{
+    deposit.textContent = `${cash}%`
+    alerts.textContent = "The Grinch Busts! Please deal again."
+  }
+  
+  
+  
+  
+  
 } 
 else if (dealerPoints <= 21){
     dealerMessages.textContent = `The Grinch's points: ${dealerPoints}`
@@ -367,8 +377,13 @@ for (var i=0; i< valueArr.length; i++){
 
 if (playerPoints > 21){
   cash -= betAmount;
-  deposit.textContent = `$${cash}`
-  alerts.textContent = "Santa Busts! Please deal again."
+  if (cash < 0){
+    deposit.textContent = `0%`
+    alerts.textContent = "Oh no! Santa Busts!"
+    checkCash(cash);
+  } else{
+    deposit.textContent = `${cash}`
+    alerts.textContent = "Santa Busts! Please deal again." }
   playerMessages.textContent = `Santa's points: ${playerPoints}`
 } else if (playerPoints === 21){
   playerMessages.textContent = "Perfect 21! Excellent."
@@ -395,64 +410,77 @@ function determineWinner(){
     alerts.textContent = "It's a Draw! Please deal again."
   } else if(playerpoints > dealerpoints && playerpoints <= 21){
     cash += betAmount;
-    deposit.textContent = `$${cash}`
-    checkCash(cash);
+    if (cash > 100){
+      deposit.textContent = `100%`
+      checkCash(cash);
+    } else {
+      deposit.textContent = `${cash}%`
+      deposit.textContent = `${cash}%`
+      checkCash(cash);
+    }
+    
     playerMessages.textContent = `Santa's points: ${playerpoints}`
-    alerts.textContent = "Santa won! Great job!"
+    
   } else if(playerpoints < dealerpoints){
     cash -= betAmount;
-    deposit.textContent = `$${cash}`
+    if (cash < 0){
+      deposit.textContent = `100%`
+      checkCash(cash);
+    } else{
+      deposit.textContent = `$${cash}`
+    }
     playerMessages.textContent = `Santa's points: ${playerpoints}`
     alerts.textContent = "The Grinch wins. Please deal again."
+    checkCash(cash);
   }
 
 
 }
 
 
-function placeBet(){
+// function placeBet(){
   
-  placebet.textContent = "Please place your bet."
+//   placebet.textContent = "Please place your bet."
   
-}
+// }
 
 
 button25.addEventListener('click', () => {
   placebet.textContent = ""
   checkCash();
-  currentbet.textContent = `Current Bet: ${25}lbs`
-   return betAmount = 25;
+  currentbet.textContent = `Current Bet: ${5}%`
+   return betAmount = 5;
 
 })
 button50.addEventListener('click', () => {
   placebet.textContent = ""
   checkCash();
-  currentbet.textContent = `Current Bet: ${50}lbs`
-  return betAmount = 50;
+  currentbet.textContent = `Current Bet: ${10}%`
+  return betAmount = 10;
 
 })
 button100.addEventListener('click', () => {
   placebet.textContent = ""
   checkCash();
-  currentbet.textContent = `Current Bet: ${100}lbs`
-  return betAmount = 100;
+  currentbet.textContent = `Current Bet: ${25}%`
+  return betAmount = 25;
 
 })
 buttonAllIn.addEventListener('click', () => {
   placebet.textContent = ""
   checkCash();
-  currentbet.textContent = `Current Bet: $${cash}`
+  currentbet.textContent = `Current Bet: ${cash}%`
   return betAmount = cash;
 
 })
 
 function checkCash(){
-  if (cash === 0){
-    alerts.textContent = "Santa's out of Christmas Spirit! Maybe Blackjack isn't his strong suit."
+  if (cash <= 0){
+    alerts.textContent = "Santa's lost the Christmas Spirit! Maybe Blackjack isn't his strong suit."
     // play grinch winner.mp3
     grinchWins.play();
-  } else if (cash > 1499){
-    alerts.textContent = "Great job, Santa tripled his Christmas Spirit! You saved Christmas!"
+  } else if (cash >= 100){
+    alerts.textContent = "Great job, You've Saved Christmas!"
     // play grinch loser mp3
     audioHoHoHo.play();
     return
