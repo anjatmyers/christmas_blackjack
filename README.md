@@ -11,7 +11,7 @@ This project made use of the following techniques:
 * HTML and CSS
 
 
-<img width="600" src="images/screenshot.jpg">
+<img width="600" src="images/screenshot">
 
 Game logic: 
 * Rather than manually code a whole deck of cards, a function `buildDeck` was made to return an array with 52 card objects. There are 4 suits: diamonds, clubs, hearts and spades. For each suit there is a rank from 1 to 13.
