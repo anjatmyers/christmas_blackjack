@@ -1,6 +1,12 @@
 # Christmas Blackjack Game
  
-This project made use of the following techniques:
+ ## This project was built using:
+ * JavaScript 
+ * HTML 
+ * CSS 
+ * Bootstrap 
+ 
+ ## It made use of the following techniques:
 * Selecting DOM elements using JavaScript
 * Adding event listeners to DOM elements
 * Creating new DOM Elements
@@ -13,7 +19,7 @@ This project made use of the following techniques:
 
 <img width="600" src="images/screenshot.png">
 
-Game logic: 
+## Game logic: 
 * Rather than manually code a whole deck of cards, a function `buildDeck` was made to return an array with 52 card objects. There are 4 suits: diamonds, clubs, hearts and spades. For each suit there is a rank from 1 to 13.
 * To deal the cards, a `render` function loops over the `dealerHand` and `playerHand` arrays and appends a new card image to the appropriate elements for each card in the hands.
 * A `shuffle` function is used after a player hits the deal button but before the cards are dealt.
