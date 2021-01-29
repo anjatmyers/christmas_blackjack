@@ -332,6 +332,7 @@ if (dealerPoints > 21){
   } else{
     deposit.textContent = `${cash}%`
     alerts.textContent = "The Grinch Busts! Please deal again."
+    dealerMessages.textContent = `The Grinch's points: ${dealerPoints}`
   }
   
   
