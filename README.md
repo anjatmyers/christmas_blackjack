@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c13508ac7905b0e171b742c88da37d01b9c61dec
 # Christmas Blackjack Game
  
 This project made use of the following techniques:
@@ -21,8 +24,11 @@ Game logic:
 * As the game is played, a `calculatePoints` function takes in an array of card objects and returns the points for that hand. Which is followed by a message if a player busts or gets a perfect score of 21. 
 * The last step is to reset the game by clearing the player and dealer hands and resetting the deck of cards.
 * A betting structure was also added. They player starts out with a certain percentage of "Christmas Spirit" (where one might typically start out with money) and can choose an amount to bet before each hand
+<<<<<<< HEAD
 
 
 =======
 This Christmas themed blackjack game required JavaScript DOM manipulation, event listeners, and nested loops. The design, inspired by the season, was achieved using Bootstrap as well as unique CSS styling tools. Game logic was advanced by adding a betting feature which gives the player a chance to win the game rather than simply winning individual hands.
 >>>>>>> 3a79e474bf1669e6ea986645b6eeec8dc030fe4c
+=======
+>>>>>>> c13508ac7905b0e171b742c88da37d01b9c61dec

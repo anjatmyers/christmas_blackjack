@@ -428,7 +428,7 @@ function determineWinner(){
       deposit.textContent = `100%`
       checkCash(cash);
     } else{
-      deposit.textContent = `$${cash}`
+      deposit.textContent = `${cash}%`
     }
     playerMessages.textContent = `Santa's points: ${playerpoints}`
     alerts.textContent = "The Grinch wins. Please deal again."
