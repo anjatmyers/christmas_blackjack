@@ -1,7 +1,7 @@
 
 # Christmas Blackjack Game
 
-## [Video Walkthrough](https://www.youtube.com/watch?v=5eevj5eN4aw?rel=0{:target="_blank"})
+## [Video Walkthrough](https://www.youtube.com/watch?v=5eevj5eN4aw?rel=0)
  <img width="600" src="images/screenshot.png">
  
 >This Christmas themed blackjack game required JavaScript DOM manipulation, event listeners, and nested loops. The design, inspired by the season, was achieved using Bootstrap as well as unique CSS styling tools. Game logic was advanced by adding a betting feature which gives the player a chance to win the game rather than simply winning individual hands.
