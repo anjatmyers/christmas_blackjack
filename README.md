@@ -2,6 +2,8 @@
 # Christmas Blackjack Game
  <img width="600" src="images/screenshot.png">
  
+>This Christmas themed blackjack game required JavaScript DOM manipulation, event listeners, and nested loops. The design, inspired by the season, was achieved using Bootstrap as well as unique CSS styling tools. Game logic was advanced by adding a betting feature which gives the player a chance to win the game rather than simply winning individual hands.
+ 
  ## This project was built using:
  * JavaScript 
  * HTML 
@@ -26,6 +28,4 @@
 * The last step is to reset the game by clearing the player and dealer hands and resetting the deck of cards.
 * A betting structure was also added. They player starts out with a certain percentage of "Christmas Spirit" (where one might typically start out with money) and can choose an amount to bet before each hand
 
-
-This Christmas themed blackjack game required JavaScript DOM manipulation, event listeners, and nested loops. The design, inspired by the season, was achieved using Bootstrap as well as unique CSS styling tools. Game logic was advanced by adding a betting feature which gives the player a chance to win the game rather than simply winning individual hands.
 
